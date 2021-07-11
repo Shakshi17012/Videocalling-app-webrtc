@@ -1,3 +1,2 @@
-# Video Chat with WebRTC and Firebase
-
-Video Calls 
+# Video Calling Application
+My first web application-Video Calls
