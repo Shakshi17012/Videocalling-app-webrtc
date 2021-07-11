@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 
 body {
-  font-family: 'Syne Mono', monospace;
+  font-family: 'Times New Roman', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: rgb(7,7,7);
   margin: 80px 10px;
 }
 
@@ -13,7 +13,7 @@ video {
   width: 40vw;
   height: 30vw;
   margin: 2rem;
-  background: #2c3e50;
+  background: #a5d6e2;
 }
 
 .videos {
