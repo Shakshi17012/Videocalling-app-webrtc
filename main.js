@@ -19,6 +19,7 @@ if (!firebase.apps.length) {
 const firestore = firebase.firestore();
 'use strict';
 
+//servers
 const servers = {
   iceServers: [
     {
@@ -28,12 +29,12 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-// Global State
+//Global State
 const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
 
-//screenshare
+//Screen Share Functions
 function handleSuccess(stream) {
   startButton.disabled = true;
   const video = document.querySelector('video');
@@ -67,6 +68,7 @@ const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
 const hangupButton = document.getElementById('hangupButton');
 const startButton = document.getElementById('startButton');
+
 // 1. Setup media sources
 
 webcamButton.onclick = async () => {
