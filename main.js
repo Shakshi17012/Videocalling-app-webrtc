@@ -40,7 +40,7 @@ function handleSuccess(stream) {
   const video = document.querySelector('#screenVideo');
   video.srcObject = stream;
   localScreenShare = stream;
-
+  document.querySelector('#remotescreenVideo').srcObject = remoteScreeenShare;
   // demonstrates how to detect that the user has stopped
   // sharing the screen via the browser UI.
   stream.getVideoTracks()[0].addEventListener('ended', () => {
