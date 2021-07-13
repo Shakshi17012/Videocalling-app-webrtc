@@ -94,7 +94,7 @@ webcamButton.onclick = async () => {
   answerButton.disabled = false;
   webcamButton.disabled = true;
 };
-cameraButton.onclick = async () => {
+/*cameraButton.onclick = async () => {
 
   if (localStream == null) {
     console.log("no stream found")
@@ -112,7 +112,7 @@ cameraButton.onclick = async () => {
           //document.getElementById("cameraBtn").classList.remove("blue");
       }
   }
-};
+};*/
 // 2. Create an offer
 
 callButton.onclick = async () => {
