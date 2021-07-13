@@ -112,7 +112,7 @@ cameraButton.onclick = async () => {
           //document.getElementById("cameraBtn").classList.remove("blue");
       }
   }
-}
+};
 // 2. Create an offer
 
 callButton.onclick = async () => {
