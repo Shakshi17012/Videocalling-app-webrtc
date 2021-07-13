@@ -14,7 +14,7 @@
         <video id="webcamVideo" autoplay playsinline></video>
       </span>
       <span>
-        <h3  style="color: rgb(41, 21, 129);background-color: azure;">Remote Stream</h3>
+        <h3 style="color: rgb(41, 21, 129);background-color: azure;">Remote Stream</h3>
         <video id="remoteVideo" autoplay playsinline></video>
       </span>
 
@@ -23,8 +23,10 @@
 
     <button id="webcamButton">Start webcam</button>
     <button id ="cameraButton" disabled>Turn off Camera</button>
+
     <h2 style="background-color: azure;">2. Create a new Call</h2>
-    <button id="callButton" disabled>Create Call (offer)</button>
+    <button id="callButton" disabled>Create Call </button>
+
 
     <h2 style="background-color: azure;">3. Join a Call</h2>
     <p>Answer the call from a different browser window or device</p>
@@ -32,15 +34,17 @@
     <input id="callInput" />
     <button id="answerButton" disabled>Answer</button>
 
+
     <h2 style="background-color: azure;">4. Hangup</h2>
 
     <button id="hangupButton" disabled>Hangup</button>
 
+
     <h2 style="background-color: azure;">5. Share screen</h2>
     <div id="container">
-    <span>
-      <button id="startButton" disabled>Share Screen</button> 
-    </span>
+      <span>
+      <button id="startButton" disabled>Share Screen</button>
+      </span>
     </div>
     <script type="module" src="/main.js"></script>
 
