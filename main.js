@@ -192,7 +192,7 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
   startButton.disabled = false;
 } else {
   errorMsg('getDisplayMedia is not supported');
-}*/
+}
 startButton.onclick = async() => {
   localStream=await navigator.mediaDevices.getDisplayMedia({video: true});
   remoteStream= new MediaStream();
@@ -207,7 +207,7 @@ startButton.onclick = async() => {
   webcamVideo.srcObject = localStream;
   remoteVideo.srcObject = remoteStream;
   startButton.disabled = true;
-};
+};*/
   
     
   
