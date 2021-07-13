@@ -33,7 +33,10 @@ const servers = {
 const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
-
+let localStreamSender = null;
+let remoteStreamSender = null;
+let localScreenShare = null;
+let remoteScreenShare = null;
 //screenshare functions
 function handleSuccess(stream) {
 
@@ -47,7 +50,11 @@ function handleSuccess(stream) {
     document.querySelector('#screenshare').disabled= false;
   });
 }
-
+/*startButton.onclick = async () => {
+  const localscreenshare= await navigator.mediaDevices.getDisplayMedia({video: true});
+  senders.find(sender => sender.track.kind =='video').replaceTrack(localscreenshare.getTracks()[0]);
+  document.querySelector('#localVideo').srcObject = localscreenshare;
+};*/
 
 // HTML elements
 const webcamButton = document.getElementById('webcamButton');
@@ -58,7 +65,6 @@ const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
 const hangupButton = document.getElementById('hangupButton');
 const startButton = document.getElementById('startButton');
-
 // 1. Setup media sources
 
 webcamButton.onclick = async () => {
@@ -67,7 +73,8 @@ webcamButton.onclick = async () => {
 
   // Push tracks from local stream to peer connection
   localStream.getTracks().forEach((track) => {
-    pc.addTrack(track, localStream);
+    localStreamSender=pc.addTrack(track, localStream);
+    senders.push(localStreamSender);
   });
 
   // Pull tracks from remote stream, add to video stream
@@ -185,4 +192,5 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
 startButton.onclick = async () => {
   const localscreenshare= await navigator.mediaDevices.getDisplayMedia({video: true});
   senders.find(sender => sender.track.kind =='video').replaceTrack(localscreenshare.getTracks()[0]);
-  document.querySelector('#localVideo').srcObject = localscreenshare;
+  document.querySelector('webcamVideo').srcObject = localscreenshare;
+};
