@@ -188,9 +188,9 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
   startButton.disabled = false;
 } else {
   errorMsg('getDisplayMedia is not supported');
-}
+}*/
 startButton.onclick = async () => {
   const localscreenshare= await navigator.mediaDevices.getDisplayMedia({video: true});
   senders.find(sender => sender.track.kind =='video').replaceTrack(localscreenshare.getTracks()[0]);
   document.querySelector('webcamVideo').srcObject = localscreenshare;
-};*/
+};
