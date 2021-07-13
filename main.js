@@ -69,7 +69,7 @@ const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
 const hangupButton = document.getElementById('hangupButton');
 const startButton = document.getElementById('startButton');
-
+const cameraButton = document.getElementById('cameraButton');
 // 1. Setup media sources
 
 webcamButton.onclick = async () => {
@@ -94,6 +94,9 @@ webcamButton.onclick = async () => {
   callButton.disabled = false;
   answerButton.disabled = false;
   webcamButton.disabled = true;
+  timeValue = setInterval(function() {
+     console.log("The call() is being executed....");
+  }, 1000);
 };
 
 // 2. Create an offer
@@ -193,4 +196,7 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
 } else {
   errorMsg('getDisplayMedia is not supported');
 }
-
+//5. stop camera
+cameraButton.onclick = async () => {
+  clearInterval(timeValue);
+};
