@@ -155,6 +155,7 @@ answerButton.onclick = async () => {
     });
   });
 };
+document.querySelector('startButton').addEventListener('click', screen_share);
 function handleSuccess(stream) {
   //document.querySelector('#screenShare').disabled = true;
   const video = document.querySelector('video');
