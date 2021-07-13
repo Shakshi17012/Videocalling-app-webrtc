@@ -34,31 +34,9 @@ const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
 
-//screenshare functions
-function handleSuccess(stream) {
-  startButton.disabled = true;
-  const video = document.querySelector('video');
-  video.srcObject = stream;
 
-  // demonstrates how to detect that the user has stopped
-  // sharing the screen via the browser UI.
-  stream.getVideoTracks()[0].addEventListener('ended', () => {
-    errorMsg('The user has ended sharing the screen');
-    startButton.disabled = false;
-  });
-}
 
-function handleError(error) {
-  errorMsg(`getDisplayMedia error: ${error.name}`, error);
-}
 
-function errorMsg(msg, error) {
-  const errorElement = document.querySelector('#errorMsg');
-  errorElement.innerHTML += `<p>${msg}</p>`;
-  if (typeof error !== 'undefined') {
-    console.error(error);
-  }
-}
 
 // HTML elements
 const webcamButton = document.getElementById('webcamButton');
@@ -71,7 +49,7 @@ const hangupButton = document.getElementById('hangupButton');
 const startButton = document.getElementById('startButton');
 
 // 1. Setup media sources
-
+const stream=await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
 webcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   remoteStream = new MediaStream();
@@ -180,11 +158,33 @@ answerButton.onclick = async () => {
     });
   });
 };
+//screenshare functions
+/*function handleSuccess(stream) {
+  startButton.disabled = true;
+  const video = document.querySelector('video');
+  video.srcObject = stream;
 
+  // demonstrates how to detect that the user has stopped
+  // sharing the screen via the browser UI.
+  stream.getVideoTracks()[0].addEventListener('ended', () => {
+    errorMsg('The user has ended sharing the screen');
+    startButton.disabled = false;
+  });
+}
+function handleError(error) {
+  errorMsg(`getDisplayMedia error: ${error.name}`, error);
+}
+
+function errorMsg(msg, error) {
+  const errorElement = document.querySelector('#errorMsg');
+  errorElement.innerHTML += `<p>${msg}</p>`;
+  if (typeof error !== 'undefined') {
+    console.error(error);
+  }
+}
 //4. screenshare
-
 startButton.addEventListener('click', () => {
-  navigator.mediaDevices.getDisplayMedia({video: true})
+  localStream=await navigator.mediaDevices.getDisplayMedia({video: true})
       .then(handleSuccess, handleError);
 });
 
@@ -192,5 +192,23 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
   startButton.disabled = false;
 } else {
   errorMsg('getDisplayMedia is not supported');
-}
+}*/
+startButton.onclick = async() => {
+  localStream=await navigator.mediaDevices.getDisplayMedia({video: true});
+  remoteStream= new MediaStream();
+  localStream.getTracks().forEach((track) => {
+    pc.addTrack(track,localStream);
+  });
+  pc.ontrack = (event) => {
+    event.streams[0].getTracks().forEach((track) => {
+     remoteStream.addTrack(track);
+    });
+  };
+  webcamVideo.srcObject = localStream;
+  remoteVideo.srcObject = remoteStream;
+  startButton.disabled = true;
+};
+  
+    
+  
 
